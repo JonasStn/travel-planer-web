@@ -8,6 +8,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
+import { UserService } from '@core/services/user';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -25,7 +26,8 @@ describe('LoginComponent', () => {
         MatRadioModule,
         MatSelectModule,
         RouterTestingModule
-      ]
+      ],
+      providers: [{ provide: UserService, useValue: { logout: jest.fn() } }]
     }).compileComponents();
   }));
 
