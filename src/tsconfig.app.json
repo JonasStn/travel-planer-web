@@ -6,5 +6,5 @@
   },
   "files": ["main.ts", "polyfills.ts"],
   "include": ["**/*.ts"],
-  "exclude": ["test.ts", "**/*.spec.ts"]
+  "exclude": ["test.ts", "**/*.spec.ts", "jestGlobalMocks.ts", "setupJest.ts"]
 }
