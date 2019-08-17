@@ -3,8 +3,8 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   CanActivateChild,
-  RouterStateSnapshot,
-  Router
+  Router,
+  RouterStateSnapshot
 } from '@angular/router';
 import { UserService } from '@core/services/user';
 
@@ -14,7 +14,10 @@ import { UserService } from '@core/services/user';
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private userService: UserService, private router: Router) {}
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(
+    _next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
     const hasValidToken = this.userService.hasValidToken();
     if (!hasValidToken) {
       this.router.navigate(['login'], { queryParams: { redirect: state.url } });
@@ -22,7 +25,10 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return hasValidToken;
   }
 
-  canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivateChild(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
     return this.canActivate(next, state);
   }
 }

@@ -8,7 +8,8 @@ export const environment = {
     url: '>>KEYCLOAK_HOST:PORT<</auth/realms/>>REALM_NAME<<',
     clientId: '>>CLIENT_ID<<',
     scope: 'openid profile email'
-  }
+  },
+  countriesApiUrl: 'https://restcountries.eu/rest/v2'
 };
 
 /*

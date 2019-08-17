@@ -15,5 +15,14 @@ export const appRoutes: Routes = [
     path: 'home',
     canActivate: [AuthGuard],
     loadChildren: () => import('@home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'countries',
+    loadChildren: () =>
+      import('@countries/countries.module').then(m => m.CountriesModule)
+  },
+  {
+    path: 'notes',
+    loadChildren: () => import('@notes/notes.module').then(m => m.NotesModule)
   }
 ];

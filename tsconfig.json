@@ -19,7 +19,10 @@
       "@core": ["src/app/_core/index.ts"],
       "@core/*": ["src/app/_core/*"],
       "@login/*": ["src/app/login/*"],
-      "@home/*": ["src/app/home/*"]
+      "@home/*": ["src/app/home/*"],
+      "@countries/*": ["src/app/countries/*"],
+      "@notes/*": ["src/app/notes/*"],
+      "@env": ["src/environments/environment.ts"]
     }
   },
   "angularCompilerOptions": {
