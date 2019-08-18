@@ -1,0 +1,24 @@
+.container {
+  padding-top: 64px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container__search-bar {
+  width: 500px;
+  margin: 28px auto;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.container__search-result {
+  display: flex;
+  flex-direction: column;
+
+  div {
+    margin: 8px auto;
+  }
+}

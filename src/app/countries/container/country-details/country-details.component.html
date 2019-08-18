@@ -1,3 +1,5 @@
 <app-layout>
-  <p>country-details works!</p>
+  <div *ngIf="country$ | async as country">
+    {{ country.name }}
+  </div>
 </app-layout>

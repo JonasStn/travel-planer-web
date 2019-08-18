@@ -1,3 +1,23 @@
 <app-layout>
-  <p>search-countries works!</p>
+  <div class="container">
+    <div class="container__search-bar">
+      <mat-form-field>
+        <input
+          [formControl]="searchCompleteControl"
+          matInput
+          placeholder="Search for countries..."
+        />
+        <mat-icon matSuffix color="primary">search</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="container__search-result">
+      <div *ngFor="let country of countries$ | async">
+        <app-search-result
+          [country]="country"
+          (countryClick)="onCountryClick($event)"
+        >
+        </app-search-result>
+      </div>
+    </div>
+  </div>
 </app-layout>

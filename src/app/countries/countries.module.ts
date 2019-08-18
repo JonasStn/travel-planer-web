@@ -5,12 +5,14 @@ import { CountryDetailsComponent } from './container/country-details';
 import { FavoriteCountriesComponent } from './container/favorite-countries';
 import { SearchCountriesComponent } from './container/search-countries';
 import { CountriesRoutingModule } from './countries-routing.module';
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 @NgModule({
   declarations: [
     SearchCountriesComponent,
     CountryDetailsComponent,
-    FavoriteCountriesComponent
+    FavoriteCountriesComponent,
+    SearchResultComponent
   ],
   imports: [SharedModule, CountriesRoutingModule]
 })

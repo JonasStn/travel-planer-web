@@ -19,7 +19,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatListModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatListModule
   ],
   exports: [
     LayoutModule,
@@ -30,7 +31,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatListModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatListModule
   ]
 })
 export class MaterialModule {}
