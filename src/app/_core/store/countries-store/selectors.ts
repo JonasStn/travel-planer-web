@@ -1,15 +1,19 @@
 import { Country } from '@core/services/countries/models';
+import { Dictionary } from '@ngrx/entity';
 import {
   createFeatureSelector,
   createSelector,
   MemoizedSelector
 } from '@ngrx/store';
 
-import { State } from './state';
+import { adapter, State } from './state';
+
+const { selectEntities, selectAll } = adapter.getSelectors();
 
 const getError = (state: State): string => state.error;
 const getIsLoading = (state: State): boolean => state.isLoading;
-const getCountries = (state: State): Country[] => state.countries;
+const getSelectedCountryCode = (state: State): string =>
+  state.selectedCountryCode;
 
 export const selectCountriesState: MemoizedSelector<
   object,
@@ -32,10 +36,36 @@ export const selectCountriesIsLoading: MemoizedSelector<
   getIsLoading
 );
 
+export const selectSelectedCountryCode: MemoizedSelector<
+  object,
+  string
+> = createSelector(
+  selectCountriesState,
+  getSelectedCountryCode
+);
+
+export const selectCountriesEntities: MemoizedSelector<
+  object,
+  Dictionary<Country>
+> = createSelector(
+  selectCountriesState,
+  selectEntities
+);
+
 export const selectCountries: MemoizedSelector<
   object,
   Country[]
 > = createSelector(
   selectCountriesState,
-  getCountries
+  selectAll
+);
+
+export const selectCurrentCountry: MemoizedSelector<
+  object,
+  Country
+> = createSelector(
+  selectCountriesEntities,
+  selectSelectedCountryCode,
+  (countriesEntities, selectedCountryCode) =>
+    countriesEntities[selectedCountryCode]
 );

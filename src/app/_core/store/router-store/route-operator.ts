@@ -1,23 +1,31 @@
 import { Action } from '@ngrx/store';
+import { TypedAction } from '@ngrx/store/src/models';
 import { OperatorFunction } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { RouteChange, RouterActions } from './actions';
+import { RouterActionTypes } from './actions';
 
 export function ofRoute(
   route: string | string[]
 ): OperatorFunction<Action, Action> {
-  return filter((action: Action) => {
-    const isRouteAction = action.type === RouterActions.CHANGE;
-    if (isRouteAction) {
-      const routeAction = action as RouteChange;
-      const routePath = routeAction.payload.path;
-      if (Array.isArray(route)) {
-        return route.includes(routePath);
-      } else {
-        return routePath === route;
+  return filter(
+    (
+      action: { payload: { path: string } } & TypedAction<
+        RouterActionTypes.CHANGE
+      >
+    ) => {
+      const isRouteAction = action.type === RouterActionTypes.CHANGE;
+      if (isRouteAction) {
+        const {
+          payload: { path }
+        } = action;
+        if (Array.isArray(route)) {
+          return route.includes(path);
+        } else {
+          return path === route;
+        }
       }
+      return isRouteAction;
     }
-    return isRouteAction;
-  });
+  );
 }

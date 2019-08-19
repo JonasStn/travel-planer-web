@@ -37,7 +37,7 @@ export class SearchCountriesComponent implements OnInit, OnDestroy {
 
   onCountryClick(code: string) {
     this.store.dispatch(
-      new RouterStoreActions.RouterGo({ path: ['countries', code, 'details'] })
+      RouterStoreActions.RouterGo({ path: ['countries', code, 'details'] })
     );
   }
 
@@ -50,7 +50,7 @@ export class SearchCountriesComponent implements OnInit, OnDestroy {
       )
       .subscribe(searchterm =>
         this.store.dispatch(
-          new CountriesStoreActions.SearchCountriesAction({ searchterm })
+          CountriesStoreActions.SearchCountries({ searchterm })
         )
       );
   }

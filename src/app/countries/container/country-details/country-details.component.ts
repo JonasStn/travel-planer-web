@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CountriesService } from '@core/services/countries';
 import { Country } from '@core/services/countries/models';
+import { CountriesStoreSelectors, RootState } from '@core/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,18 +12,11 @@ import { Observable } from 'rxjs';
 export class CountryDetailsComponent implements OnInit {
   country$: Observable<Country>;
 
-  constructor(
-    private countriesService: CountriesService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  constructor(private store: Store<RootState>) {}
 
   ngOnInit() {
-    const {
-      snapshot: {
-        params: { id }
-      }
-    } = this.activatedRoute;
-
-    this.country$ = this.countriesService.getCountryByCode(id);
+    this.country$ = this.store.select(
+      CountriesStoreSelectors.selectCurrentCountry
+    );
   }
 }

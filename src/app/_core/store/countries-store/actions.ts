@@ -1,28 +1,40 @@
 import { Country } from '@core/services/countries/models';
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
-export enum ActionTypes {
+export enum SearchCountriesActionTypes {
   SEARCH_COUNTRIES = '[Countries] Search Countries',
   SEARCH_COUNTRIES_SUCCESS = '[Countries] Search Countries Success',
-  SEARCH_COUNTRIES_ERROR = '[Countries] Search Countries Error'
+  LOAD_COUNTRY = '[Countries] Load Country',
+  LOAD_COUNTRY_SUCCESS = '[Countries] Load Country Success',
+  COUNTRIES_ERROR = '[Countries] Countries Error',
+  SET_SELECTED_COUNTRY = '[Countries] Set Selected Country'
 }
 
-export class SearchCountriesAction implements Action {
-  readonly type = ActionTypes.SEARCH_COUNTRIES;
-  constructor(public payload: { searchterm: string }) {}
-}
+export const SearchCountries = createAction(
+  SearchCountriesActionTypes.SEARCH_COUNTRIES,
+  props<{ searchterm: string }>()
+);
 
-export class SearchCountriesSuccessAction implements Action {
-  readonly type = ActionTypes.SEARCH_COUNTRIES_SUCCESS;
-  constructor(public payload: { countries: Country[] }) {}
-}
+export const SearchCountriesSuccess = createAction(
+  SearchCountriesActionTypes.SEARCH_COUNTRIES_SUCCESS,
+  props<{ countries: Country[] }>()
+);
 
-export class SearchCountriesErrorAction implements Action {
-  readonly type = ActionTypes.SEARCH_COUNTRIES_ERROR;
-  constructor(public payload: { error: string }) {}
-}
+export const LoadCountry = createAction(
+  SearchCountriesActionTypes.LOAD_COUNTRY,
+  props<{ countryCode: string }>()
+);
+export const LoadCountrySuccess = createAction(
+  SearchCountriesActionTypes.LOAD_COUNTRY_SUCCESS,
+  props<{ country: Country }>()
+);
 
-export type Actions =
-  | SearchCountriesAction
-  | SearchCountriesSuccessAction
-  | SearchCountriesErrorAction;
+export const CountriesError = createAction(
+  SearchCountriesActionTypes.COUNTRIES_ERROR,
+  props<{ error: string }>()
+);
+
+export const SetSelectedCountry = createAction(
+  SearchCountriesActionTypes.SET_SELECTED_COUNTRY,
+  props<{ selectedCountryCode: string }>()
+);

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, ActivationEnd, Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { filter, map, pluck, tap } from 'rxjs/operators';
+import { filter, pluck, tap } from 'rxjs/operators';
 
-import { RouteChange, RouterActions, RouterGo } from './actions';
+import * as RouterActions from './actions';
 
 @Injectable()
 export class RouterEffects {
@@ -20,8 +20,7 @@ export class RouterEffects {
 
   @Effect({ dispatch: false })
   navigate$ = this.actions$.pipe(
-    ofType(RouterActions.GO),
-    map((action: RouterGo) => action.payload),
+    ofType(RouterActions.RouterGo),
     tap(({ path, queryParams, extras }) =>
       this.router.navigate(path, { queryParams, ...extras })
     )
@@ -29,13 +28,13 @@ export class RouterEffects {
 
   @Effect({ dispatch: false })
   navigateBack$ = this.actions$.pipe(
-    ofType(RouterActions.BACK),
+    ofType(RouterActions.RouterBack),
     tap(() => this.location.back())
   );
 
   @Effect({ dispatch: false })
   navigateForward$ = this.actions$.pipe(
-    ofType(RouterActions.FORWARD),
+    ofType(RouterActions.RouterForward),
     tap(() => this.location.forward())
   );
 
@@ -47,7 +46,7 @@ export class RouterEffects {
       )
       .subscribe((snapshot: ActivatedRouteSnapshot) =>
         this.store.dispatch(
-          new RouteChange({
+          RouterActions.RouteChange({
             params: { ...snapshot.params },
             path: snapshot.routeConfig.path
           })
