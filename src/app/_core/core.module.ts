@@ -2,10 +2,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AuthModule } from './auth';
+import { RootStoreModule } from './store';
 
 @NgModule({
-  declarations: [],
-  imports: [HttpClientModule, AuthModule],
-  exports: [AuthModule]
+  imports: [HttpClientModule, AuthModule, RootStoreModule]
 })
 export class CoreModule {}
