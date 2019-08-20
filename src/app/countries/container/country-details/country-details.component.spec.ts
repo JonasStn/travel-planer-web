@@ -5,8 +5,9 @@ import { RootState } from '@core/store';
 import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppLayoutComponent } from '@shared/app-layout/container';
+import { MapComponent } from '@shared/components/map';
 import { MaterialModule } from '@shared/material';
-import { MockComponent } from 'ng-mocks';
+import { MockComponents } from 'ng-mocks';
 
 import { CountryDetailsComponent } from './country-details.component';
 
@@ -30,7 +31,10 @@ describe('CountryDetailsComponent', () => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, RouterTestingModule],
       providers: [provideMockStore({ initialState })],
-      declarations: [CountryDetailsComponent, MockComponent(AppLayoutComponent)]
+      declarations: [
+        CountryDetailsComponent,
+        MockComponents(AppLayoutComponent, MapComponent)
+      ]
     }).compileComponents();
   }));
 

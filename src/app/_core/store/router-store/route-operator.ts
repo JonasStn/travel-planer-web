@@ -9,16 +9,10 @@ export function ofRoute(
   route: string | string[]
 ): OperatorFunction<Action, Action> {
   return filter(
-    (
-      action: { payload: { path: string } } & TypedAction<
-        RouterActionTypes.CHANGE
-      >
-    ) => {
+    (action: { path: string } & TypedAction<RouterActionTypes.CHANGE>) => {
       const isRouteAction = action.type === RouterActionTypes.CHANGE;
       if (isRouteAction) {
-        const {
-          payload: { path }
-        } = action;
+        const { path } = action;
         if (Array.isArray(route)) {
           return route.includes(path);
         } else {

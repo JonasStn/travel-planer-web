@@ -7,25 +7,14 @@
   <img mat-card-image [src]="country.flag" />
   <mat-card-content>
     <mat-list>
-      <h3 mat-subheader>INFO</h3>
       <mat-list-item>
         <h4 mat-line>Capital</h4>
         <p mat-line>{{ country.capital }}</p>
       </mat-list-item>
       <mat-list-item>
-        <h4 mat-line>Population</h4>
-        <p mat-line>{{ country.population | number }}</p>
-      </mat-list-item>
-      <mat-list-item>
         <h4 mat-line>Languages</h4>
         <p *ngFor="let lang of country.languages" mat-line>
           {{ lang.nativeName }}
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <h4 mat-line>Currencies</h4>
-        <p *ngFor="let curr of country.currencies" mat-line>
-          {{ curr.name }}
         </p>
       </mat-list-item>
     </mat-list>

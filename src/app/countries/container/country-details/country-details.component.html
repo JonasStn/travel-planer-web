@@ -1,5 +1,40 @@
 <app-layout>
-  <div *ngIf="country$ | async as country">
-    {{ country.name }}
+  <div *ngIf="country$ | async as country" class="container">
+    <div class="header">
+      <h2>{{ country.name }}</h2>
+      <img [src]="country.flag" />
+    </div>
+    <div class="map">
+      <app-map [latLong]="country.latlng"> </app-map>
+    </div>
+    <div>
+      <mat-card>
+        <mat-card-content>
+          <div>
+            <strong>Population: </strong> {{ country.population | number }}
+          </div>
+          <div>
+            <strong>Currency: </strong>
+            <span *ngFor="let currency of country.currencies">{{
+              currency.name ? currency.name + ', ' : ''
+            }}</span>
+          </div>
+          <div>
+            <strong>Borders: </strong>
+            <span *ngFor="let border of country.borders">{{
+              border ? border + ', ' : ''
+            }}</span>
+          </div>
+          <div><strong>Capital: </strong> {{ country.capital }}</div>
+          <div>
+            <strong>Timezones: </strong>
+            <span *ngFor="let timezone of country.timezones">{{
+              timezone ? timezone + ', ' : ''
+            }}</span>
+          </div>
+          <div><strong>Subregion: </strong> {{ country.subregion }}</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </app-layout>

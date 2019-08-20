@@ -44,7 +44,7 @@ export class CountriesEffects {
   @Effect()
   countriesRoutedEffect$ = this.actions$.pipe(
     ofRoute(':id/details'),
-    pluck('payload', 'params'),
+    pluck('params'),
     tap(({ id }) =>
       this.store.dispatch(CountriesActions.LoadCountry({ countryCode: id }))
     ),

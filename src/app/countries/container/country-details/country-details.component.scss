@@ -1,0 +1,41 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.header {
+  padding-top: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    margin-right: 8px;
+  }
+}
+
+img {
+  width: 100px;
+  height: 50px;
+}
+
+.map {
+  display: flex;
+  justify-content: center;
+  padding: 64px;
+
+  app-map {
+    width: 100%;
+  }
+}
+
+.mat-card {
+  margin: 0 36px;
+}
+
+.mat-card-content {
+  display: flex;
+  flex-direction: column;
+  div {
+    margin-bottom: 8px;
+  }
+}

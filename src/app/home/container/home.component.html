@@ -1,5 +1,11 @@
 <app-layout>
   <div>
-    <p>Hello {{ user.name }}</p>
+    <h1>Hello {{ user.name }}</h1>
+  </div>
+  <div class="start-button">
+    <button mat-raised-button color="primary" routerLink="/countries/search">
+      Let's GO
+      <mat-icon matSuffix>public</mat-icon>
+    </button>
   </div>
 </app-layout>

@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { HomeComponent } from './home.component';
-import { MockComponent } from 'ng-mocks';
-import { AppLayoutComponent } from '../../_shared/app-layout/container';
+import { MatIcon } from '@angular/material/icon';
 import { UserService } from '@core/services/user';
+import { MockComponents } from 'ng-mocks';
+
+import { AppLayoutComponent } from '../../_shared/app-layout/container';
+import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -11,8 +12,16 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent, MockComponent(AppLayoutComponent)],
-      providers: [{ provide: UserService, useValue: { currentUser: { name: 'some-name' } } }]
+      declarations: [
+        HomeComponent,
+        MockComponents(AppLayoutComponent, MatIcon)
+      ],
+      providers: [
+        {
+          provide: UserService,
+          useValue: { currentUser: { name: 'some-name' } }
+        }
+      ]
     }).compileComponents();
   }));
 

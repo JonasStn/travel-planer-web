@@ -5,11 +5,12 @@
 export const environment = {
   production: false,
   keycloakConfig: {
-    url: '>>KEYCLOAK_HOST:PORT<</auth/realms/>>REALM_NAME<<',
-    clientId: '>>CLIENT_ID<<',
+    url: '',
+    clientId: '',
     scope: 'openid profile email'
   },
-  countriesApiUrl: 'https://restcountries.eu/rest/v2'
+  countriesApiUrl: 'https://restcountries.eu/rest/v2',
+  mapApiKey: ''
 };
 
 /*
